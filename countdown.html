@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+  background-color: #fff;
+  margin: 0;
+  padding: 0;
+}
+
+#demo {
+  color: red;
+  text-align: center;
+  font-size: 3em;
+}
+
+/* 当屏幕宽度小于600px时，改变字体大小 */
+@media only screen and (max-width: 600px) {
+  #demo {
+    font-size: 2em;
+  }
+}
+</style>
+</head>
+<body>
+
+<p id="demo"></p>
+
+<script>
+// 设置目标日期时间
+var countDownDate = new Date("Dec 1, 2023 00:00:00").getTime();
+
+// 更新倒计时每秒
+var x = setInterval(function() {
+
+  // 获取当前日期和时间
+  var now = new Date().getTime();
+
+  // 找到距离现在和目标日期的距离
+  var distance = countDownDate - now;
+
+  // 时间计算，获取天，小时，分钟和秒
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  // 显示结果
+  document.getElementById("demo").innerHTML = days + "天 " + hours + "小时 "
+  + minutes + "分钟 " + seconds + "秒 ";
+
+  // 如果倒计时结束，写一些文本
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("demo").innerHTML = "寄了喵！";
+  }
+}, 1000);
+</script>
+
+</body>
+</html>
